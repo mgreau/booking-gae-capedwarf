@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<filter>
+		<filter-name>ObjectifyFilter</filter-name>
+		<filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>ObjectifyFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!-- Homepage -->
+	<servlet>
+		<servlet-name>BookingServlet</servlet-name>
+		<servlet-class>com.mgreau.book.wildfly.booking.servlet.BookingServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BookingServlet</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Search -->
+	<servlet>
+		<servlet-name>SearchServlet</servlet-name>
+		<servlet-class>com.mgreau.book.wildfly.booking.search.IndexSearchServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SearchServlet</servlet-name>
+		<url-pattern>/search</url-pattern>
+	</servlet-mapping>
+
+	<!-- BlobStore -->
+	<servlet>
+		<servlet-name>UploadToBlobStore</servlet-name>
+		<servlet-class>com.mgreau.book.wildfly.booking.storage.UploadToStorageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UploadToBlobStore</servlet-name>
+		<url-pattern>/upload-to-blobstore</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Google Cloud Storage
+	<servlet>
+		<servlet-name>UploadToGCS</servlet-name>
+		<servlet-class>com.mgreau.book.wildfly.booking.storage.UploadToStorageServlet</servlet-class>
+	</servlet> -->
+	<servlet-mapping>
+		<servlet-name>UploadToBlobStore</servlet-name>
+		<url-pattern>/upload-to-gcs</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Admin Task -->
+	<servlet>
+		<servlet-name>AddToQueue</servlet-name>
+		<servlet-class>com.mgreau.book.wildfly.booking.taskqueue.AddToQueueServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddToQueue</servlet-name>
+		<url-pattern>/add-to-queue</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>LoadDatas</servlet-name>
+		<servlet-class>com.mgreau.book.wildfly.booking.taskqueue.LoadHotelServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoadDatas</servlet-name>
+		<url-pattern>/tasks/loadDatas</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Homepage -->
+	<welcome-file-list>
+		<welcome-file>overview.jsp</welcome-file>
+	</welcome-file-list>
+	
+	<!-- Endpoints -->
+	<servlet>
+		<servlet-name>SystemServiceServlet</servlet-name>
+		<servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
+		<init-param>
+			<param-name>services</param-name>
+			<param-value>com.mgreau.book.wildfly.booking.endpoint.BookingEndpoint,com.mgreau.book.wildfly.booking.endpoint.HotelEndpoint,com.mgreau.book.wildfly.booking.endpoint.DashboardEndpoint</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SystemServiceServlet</servlet-name>
+		<url-pattern>/_ah/spi/*</url-pattern>
+	</servlet-mapping>
+
+</web-app>
