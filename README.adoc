@@ -1,5 +1,5 @@
 == Booking App on CapeDwarf and App Engine
-Maxime Gréau <contact@mgreau>
+Maxime Gréau <contact@mgreau.com>
 :imagesdir: ./doc/img
 
 
