@@ -1,4 +1,13 @@
-==Booking App
+== Booking App on CapeDwarf and App Engine
+Maxime Gréau <contact@mgreau>
+:imagesdir: ./doc/img
+
+
+=== CapeDwarf / WildFly
+TBD
+
+
+=== App Engine
 
 URL on appengine : 
 
@@ -11,4 +20,6 @@ To build, run
 To start the app, use the [App Engine Maven Plugin]
 
     mvn appengine:devserver
+
+
 
