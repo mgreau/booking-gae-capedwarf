@@ -6,3 +6,4 @@ target/
 .factorypath
 .idea/
 *~
+eclipse-launch-profiles/
