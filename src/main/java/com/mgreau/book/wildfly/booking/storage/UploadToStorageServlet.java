@@ -60,10 +60,10 @@ public class UploadToStorageServlet extends HttpServlet {
 		System.out.println("gcs object name : " + fi.getGsObjectName());
 
 		if (gcsFileName == null) {
-			resp.sendRedirect("/?error=1");
+			resp.sendRedirect("?error=1");
 		} else {
 			String msg = "File upload (" + gcsFileName + ")";
-			resp.sendRedirect("/?msg=" + msg);
+			resp.sendRedirect("?msg=" + msg);
 		}
 
 	}

@@ -1,8 +1,8 @@
 <div class="alert alert-info">
 	<%
-		if (request.getAttribute("msg") != null) {
+		if (request.getParameter("msg") != null) {
 	%>
-		<%=request.getAttribute("msg").toString()%>
+		<%=request.getParameter("msg")%>
 	<%
 		}
 	%>
