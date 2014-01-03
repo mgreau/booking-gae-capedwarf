@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<title>Booking - GAE - CapeDwarf</title>
+<title>Booking - GAE - CapeDwarf WildFly on OpenShift</title>
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
@@ -15,7 +15,7 @@
 
 <body>
 	<div id="header">
-		<h1>Booking App - GAE - JBoss CapeDwarf</h1>
+		<h1>Booking App on GAE AND CapeDwarf-WildFly with OpenShift</h1>
 		<hr/>
 	</div>
 	<div class="container">

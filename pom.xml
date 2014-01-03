@@ -11,10 +11,10 @@
 
 	<properties>
 		<appengine.app.version>1</appengine.app.version>
-		<appengine.target.version>1.8.6</appengine.target.version>
+		<appengine.target.version>1.8.8</appengine.target.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-
+	
 	<dependencies>
 		<!-- Compile/runtime dependencies -->
 		<dependency>
@@ -43,20 +43,20 @@
 		<dependency>
 			<groupId>com.googlecode.objectify</groupId>
 			<artifactId>objectify</artifactId>
-			<version>4.0rc1</version>
+			<version>4.0rc2</version>
 		</dependency>
 
 		<!-- Cloud Storage -->
 		<dependency>
 			<groupId>com.google.appengine.tools</groupId>
 			<artifactId>appengine-gcs-client</artifactId>
-			<version>0.3.2</version>
+			<version>0.3.3</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.google.appengine</groupId>
 			<artifactId>appengine-api-labs</artifactId>
-			<version>1.8.5</version>
+			<version>${appengine.target.version}</version>
 		</dependency>
 
 		<!-- MapReduce <dependency> <groupId>com.google.appengine.tools</groupId> 
@@ -109,6 +109,12 @@
 							</includes>
 						</resource>
 					</webResources>
+					<!-- 
+					<archive>
+						<manifestEntries>
+							<Dependencies>com.google.appengine,com.google.appengine.endpoints</Dependencies>
+						</manifestEntries>
+					</archive> -->
 				</configuration>
 			</plugin>
 
@@ -143,8 +149,10 @@
 			<id>wildfly</id>
 			<build>
 				<finalName>ROOT</finalName>
+				<plugins></plugins>
 			</build>
 		</profile>
+		
 	</profiles>
 
 </project>

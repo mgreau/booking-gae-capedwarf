@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.googlecode.objectify.LoadResult;
+import com.googlecode.objectify.cmd.LoadType;
 import com.mgreau.book.wildfly.booking.entities.Hotel;
 
 @SuppressWarnings("serial")
@@ -24,8 +26,10 @@ public class BookingServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException, ServletException {
+		int nb =  ofy().load().type(Hotel.class).list().size();
 		
-		req.setAttribute("nbHotel", ofy().load().type(Hotel.class).count());
+		req.setAttribute("nbHotel", nb);
+		LOG.info("home - nbHotel : " + nb);
 		req.getRequestDispatcher("/overview.jsp").forward(req, resp);
 
 	}

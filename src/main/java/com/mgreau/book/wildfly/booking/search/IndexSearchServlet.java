@@ -24,7 +24,7 @@ public class IndexSearchServlet extends HttpServlet {
 		req.setAttribute("msg", "Nb result :  " + hotels.size() +" for search query : " + query);
 		
 		if (hotels.size() > 0){
-			req.setAttribute("hotel", hotels.get(0));
+			req.setAttribute("hotels", hotels);
 		}
 		req.getRequestDispatcher("/jsp/search.jsp").forward(req, resp);
 	}

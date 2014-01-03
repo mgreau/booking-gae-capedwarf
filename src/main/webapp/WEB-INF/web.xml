@@ -18,7 +18,11 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>BookingServlet</servlet-name>
-		<url-pattern></url-pattern>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>BookingServlet</servlet-name>
+		<url-pattern>/home</url-pattern>
 	</servlet-mapping>
 	
 	<!-- Search -->
@@ -41,11 +45,6 @@
 		<url-pattern>/upload-to-blobstore</url-pattern>
 	</servlet-mapping>
 	
-	<!-- Google Cloud Storage
-	<servlet>
-		<servlet-name>UploadToGCS</servlet-name>
-		<servlet-class>com.mgreau.book.wildfly.booking.storage.UploadToStorageServlet</servlet-class>
-	</servlet> -->
 	<servlet-mapping>
 		<servlet-name>UploadToBlobStore</servlet-name>
 		<url-pattern>/upload-to-gcs</url-pattern>
@@ -71,7 +70,7 @@
 	
 	<!-- Homepage -->
 	<welcome-file-list>
-		<welcome-file>overview.jsp</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 	
 	<!-- Endpoints -->

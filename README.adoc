@@ -3,9 +3,15 @@ Maxime Gréau <contact@mgreau.com>
 :imagesdir: ./doc/img
 
 
-=== CapeDwarf / WildFly
-TBD
+=== CapeDwarf - WildFly / OpenShift
 
+URL on OpenShift : 
+
+* http://capedwarf-mgreau.rhcloud.com/
+
+To build, run
+
+    mvn clean package -Pwildfly
 
 === App Engine
 
@@ -15,7 +21,7 @@ URL on appengine :
 
 To build, run
 
-    mvn package
+    mvn clean package
 
 To start the app, use the [App Engine Maven Plugin]
 

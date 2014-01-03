@@ -1,4 +1,5 @@
 <%@page import="com.mgreau.book.wildfly.booking.entities.Hotel"%>
+<%@page import="java.util.*"%>
 
 <jsp:include page="../header.jsp"></jsp:include>
 <h2>Search API :</h2>
@@ -12,16 +13,19 @@
 
 <%
 	if (request.getAttribute("msg") != null) {
-		Hotel h = (Hotel) request.getAttribute("hotel");
-		if (h != null) {
+		List<Hotel> list = (List<Hotel>) request.getAttribute("hotels");
+		if (list != null && list.size() > 0) {
+			for (Hotel h : list){
 %>
 <div>
-	<p>Here is a sample hotel found with the query :</p>
 	<ul>
-		<li><%=h.getHotelName()%></li>
+		<li>ID : <a href="/_ah/api/bookingendpoint/v1/hotel/<%=h.getId()%>"><%=h.getId()%> - (Endpoint URL)</a></li>
+		<li>Name : <%=h.getHotelName()%></li>
+		<li>Address : <%=h.getAddress()%> </li>
+		<li>City : <%=h.getCity()%> </li>
 	</ul>
 </div>
-<%
+<%			}
 	} else {
 %>
 <div>No result.</div>

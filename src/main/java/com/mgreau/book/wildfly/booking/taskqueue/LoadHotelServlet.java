@@ -71,8 +71,9 @@ public class LoadHotelServlet extends HttpServlet {
 	}
 
 	private void addToGSC(String filename, String size) {
+		GcsOutputChannel writeChannel = null;
 		try {
-			GcsOutputChannel writeChannel = gcsService.createOrReplace(
+			 writeChannel = gcsService.createOrReplace(
 					new GcsFilename("booking", filename),
 					GcsFileOptions.getDefaultInstance());
 
@@ -108,12 +109,14 @@ public class LoadHotelServlet extends HttpServlet {
 				fileToStore = "hotels_all.csv";
 			InputStream in = this.getClass().getClassLoader()
 					.getResourceAsStream(fileToStore);
-
+			
+			writeChannel.waitForOutstandingWrites();
 			writeChannel.write(ByteBuffer.wrap(ByteStreams.toByteArray(in)));
 			writeChannel.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOG.log(Level.SEVERE, "Exception when try to write a CSV file into Google Cloud Storage", e);
+		} finally{
+			
 		}
 	}
 
@@ -125,7 +128,7 @@ public class LoadHotelServlet extends HttpServlet {
 	private void loadHotelsFromGSC(HttpServletRequest req,
 			HttpServletResponse resp) {
 
-		final String fileName = req.getParameter("fileKey");
+		final String fileName = req.getParameter("fileKey") + System.currentTimeMillis();
 		final String size = req.getParameter("size");
 		LOG.info(prefix + "Insert file into GSC.");
 		addToGSC(fileName, size);

@@ -7,9 +7,8 @@
 <jsp:include page="header.jsp"></jsp:include>
 	<h1>Hello Booking - GAE - CapeDwarf!</h1>
 
-	<h2>App Overwiew</h2>
-	<p>This app is develop to illustrate the possibility of CapeWarf.
-		API uses by this app are listed below :</p>
+	<h2>App Overview</h2>
+	<p>The same code is deployed on <b>OpenShift / CapeDwarf-WildFly and on AppEngine GAE</b></p>
 		<span class="label label-danger">Hotels in datastore : <%=nbHotel%></span>
 		<%
 			if (nbHotel == 0) {
