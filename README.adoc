@@ -18,6 +18,10 @@ Maxime Gréau <contact@mgreau.com>
 ** then execute the Maven command below :
     
     mvn clean package -Pwildfly wildfly:deploy
+   
+** the booking app (ROOT.war) is available on : 
+
+   http://localhost:8080
 
 * URL on OpenShift : 
 ** http://capedwarf-mgreau.rhcloud.com/
