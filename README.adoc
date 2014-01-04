@@ -5,19 +5,28 @@ Maxime Gréau <contact@mgreau.com>
 
 === CapeDwarf - WildFly / OpenShift
 
-URL on OpenShift : 
+* Install on your laptop
+** download CapeDwarf WildFly 2.0-Beta1 : 
+    
+    wget http://downloads.jboss.org/capedwarf/CapeDwarf_WildFly_2.0.0.Beta1.zip
 
-* http://capedwarf-mgreau.rhcloud.com/
+** unzip and start CapeDwarf
+    
+    $JBOSS_HOME/bin/standalone.sh -c standalone-capedwarf.xml
 
-To build, run
+** clone this project 
+** then execute the Maven command below :
+    
+    mvn clean package -Pwildfly wildfly:deploy
 
-    mvn clean package -Pwildfly
+* URL on OpenShift : 
+** http://capedwarf-mgreau.rhcloud.com/
+
+
 
 === App Engine
 
-URL on appengine : 
-
-* https://cloud-booking.appspot.com/
+* Install on your laptop
 
 To build, run
 
@@ -26,6 +35,11 @@ To build, run
 To start the app, use the [App Engine Maven Plugin]
 
     mvn appengine:devserver
+
+* URL on appengine : 
+** https://cloud-booking.appspot.com/
+
+
 
 
 

@@ -10,11 +10,17 @@
 	<artifactId>booking-gae-capedwarf</artifactId>
 
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<objectify.version>4.0rc2</objectify.version>
+		<!-- appengine -->
 		<appengine.app.version>1</appengine.app.version>
 		<appengine.target.version>1.8.8</appengine.target.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<appengine.gcs.client.version>0.3.3</appengine.gcs.client.version>
+		<!-- CapedWarf / WildFly -->
+		<org.wildfly.version>8.0.0.Beta1</org.wildfly.version>
+		<org.wildfly.plugins.version>1.0.0.Beta1</org.wildfly.plugins.version>
 	</properties>
-	
+
 	<dependencies>
 		<!-- Compile/runtime dependencies -->
 		<dependency>
@@ -43,14 +49,14 @@
 		<dependency>
 			<groupId>com.googlecode.objectify</groupId>
 			<artifactId>objectify</artifactId>
-			<version>4.0rc2</version>
+			<version>${objectify.version}</version>
 		</dependency>
 
 		<!-- Cloud Storage -->
 		<dependency>
 			<groupId>com.google.appengine.tools</groupId>
 			<artifactId>appengine-gcs-client</artifactId>
-			<version>0.3.3</version>
+			<version>${appengine.gcs.client.version}</version>
 		</dependency>
 
 		<dependency>
@@ -109,12 +115,8 @@
 							</includes>
 						</resource>
 					</webResources>
-					<!-- 
-					<archive>
-						<manifestEntries>
-							<Dependencies>com.google.appengine,com.google.appengine.endpoints</Dependencies>
-						</manifestEntries>
-					</archive> -->
+					<!-- <archive> <manifestEntries> <Dependencies>com.google.appengine,com.google.appengine.endpoints</Dependencies> 
+						</manifestEntries> </archive> -->
 				</configuration>
 			</plugin>
 
@@ -143,16 +145,26 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<profiles>
 		<profile>
 			<id>wildfly</id>
 			<build>
 				<finalName>ROOT</finalName>
-				<plugins></plugins>
+				<!-- To deploy on Wildfly -->
+				<plugins>
+					<plugin>
+						<groupId>org.wildfly.plugins</groupId>
+						<artifactId>wildfly-maven-plugin</artifactId>
+						<version>${org.wildfly.plugins.version}</version>
+						<configuration>
+							<skip>false</skip>
+						</configuration>
+					</plugin>
+				</plugins>
 			</build>
 		</profile>
-		
+
 	</profiles>
 
 </project>
