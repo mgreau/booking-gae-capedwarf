@@ -58,6 +58,7 @@ public class UploadToStorageServlet extends HttpServlet {
 		System.out.println("gcs-filename : " + gcsFileName);
 		System.out.println("gcs size : " + fi.getSize());
 		System.out.println("gcs object name : " + fi.getGsObjectName());
+		
 
 		if (gcsFileName == null) {
 			resp.sendRedirect("/home?error=1");

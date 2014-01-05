@@ -1,6 +1,9 @@
-== Booking App on CapeDwarf and App Engine
+== Booking App on CapeDwarf/WildFly and App Engine
 Maxime Gréau <contact@mgreau.com>
 :imagesdir: ./doc/img
+
+.Booking app screenshot deployed on AppEngine
+image::booking_app_taskqueue.png[booking app screenshot deployed on AppEngine]
 
 
 === CapeDwarf - WildFly / OpenShift
