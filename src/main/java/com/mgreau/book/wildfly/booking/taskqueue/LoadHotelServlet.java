@@ -40,7 +40,9 @@ public class LoadHotelServlet extends HttpServlet {
 			.getCanonicalName());
 
 	/** Prefix to see step in sysout */
-	private static final String prefix = "[BOOKING-GAE-CAPEDWARF]";
+	private static final String PREFIX = "[BOOKING-GAE-CAPEDWARF]";
+	
+	private static final String BUCKET_NAME = "hotels_datas";
 
 	/**
 	 * This is where backoff parameters are configured. Here it is aggressively
@@ -74,7 +76,7 @@ public class LoadHotelServlet extends HttpServlet {
 		GcsOutputChannel writeChannel = null;
 		try {
 			 writeChannel = gcsService.createOrReplace(
-					new GcsFilename("booking", filename),
+					new GcsFilename(BUCKET_NAME, filename),
 					GcsFileOptions.getDefaultInstance());
 
 			String fileToStore;
@@ -130,15 +132,15 @@ public class LoadHotelServlet extends HttpServlet {
 
 		final String fileName = req.getParameter("fileKey") + System.currentTimeMillis();
 		final String size = req.getParameter("size");
-		LOG.info(prefix + "Insert file into GSC.");
+		LOG.info(PREFIX + "Insert file into GSC.");
 		addToGSC(fileName, size);
 
-		LOG.info(prefix + "Try to load datastore from file : " + fileName);
-		GcsFilename gcsFileName = new GcsFilename("booking", fileName);
+		LOG.info(PREFIX + "Try to load datastore from file : " + fileName);
+		GcsFilename gcsFileName = new GcsFilename(BUCKET_NAME, fileName);
 		InputStream in = getInputStreamWithGCSAPI(gcsFileName);
 
 		if (in == null) {
-			LOG.log(Level.SEVERE, prefix + "File : " + fileName
+			LOG.log(Level.SEVERE, PREFIX + "File : " + fileName
 					+ " => Unable to read from GCS!");
 		} else {
 			insertToDatastore(in);
@@ -152,14 +154,14 @@ public class LoadHotelServlet extends HttpServlet {
 		HotelEndpoint he = new HotelEndpoint();
 		DashboardEndpoint dash = new DashboardEndpoint();
 
-		LOG.info(prefix + "...Check datas......");
+		LOG.info(PREFIX + "...Check datas......");
 		int datas = dash.getDashboard().getNbHotels();
-		LOG.info(prefix + "...Hotels already added (" + datas
+		LOG.info(PREFIX + "...Hotels already added (" + datas
 				+ " hotels)......");
 
 		// removeIndex();
 		// create hotels
-		LOG.info(prefix + "...Adding hotels......");
+		LOG.info(PREFIX + "...Adding hotels......");
 		Scanner lineScan = new Scanner(in);
 		int countAdded = 0;
 		while (lineScan.hasNextLine()) {
@@ -196,11 +198,11 @@ public class LoadHotelServlet extends HttpServlet {
 		lineScan.close();
 
 		datas = dash.getDashboard().getNbHotels();
-		LOG.info(prefix + countAdded + "...hotels have been created......");
-		LOG.info(prefix + "...Hotels new count (" + datas + " hotels)......");
-		LOG.info(prefix + "...City list (" + dash.getDashboard().getCityList()
+		LOG.info(PREFIX + countAdded + "...hotels have been created......");
+		LOG.info(PREFIX + "...Hotels new count (" + datas + " hotels)......");
+		LOG.info(PREFIX + "...City list (" + dash.getDashboard().getCityList()
 				+ " )......");
-		LOG.info(prefix + "...Country list ("
+		LOG.info(PREFIX + "...Country list ("
 				+ dash.getDashboard().getCountryList() + " )......");
 	}
 
@@ -236,7 +238,7 @@ public class LoadHotelServlet extends HttpServlet {
 		try {
 			byte[] buffer = new byte[BUFFER_SIZE];
 			int bytesRead = input.read(buffer);
-			LOG.info(prefix+"bytesRead:" + bytesRead);
+			LOG.info(PREFIX+"bytesRead:" + bytesRead);
 			while (bytesRead != -1) {
 				output.write(buffer, 0, bytesRead);
 				bytesRead = input.read(buffer);

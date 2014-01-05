@@ -10,7 +10,7 @@
 			.getBlobstoreService();
 	//Add bucket name to store in Google Cloud Storage instead of Blobstore
 	UploadOptions upOpts = Builder
-			.withGoogleStorageBucketName("booking");
+			.withGoogleStorageBucketName("hotels_datas");
 	upOpts.maxUploadSizeBytes(10000000);
 %>
 
