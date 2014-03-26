@@ -1,4 +1,4 @@
-== Booking App on CapeDwarf/WildFly and App Engine
+= Booking App on CapeDwarf/WildFly and App Engine
 Maxime Gréau <contact@mgreau.com>
 :imagesdir: ./doc/img
 
