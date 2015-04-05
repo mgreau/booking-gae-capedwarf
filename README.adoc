@@ -6,7 +6,7 @@ Maxime Gréau <contact@mgreau.com>
 image::booking_app_taskqueue.png[booking app screenshot deployed on AppEngine]
 
 
-=== CapeDwarf-WildFly / OpenShift
+=== CapeDwarf / WildFly / OpenShift
 
 * Install on your laptop
 ** download CapeDwarf WildFly 2.0-Beta1 : 
